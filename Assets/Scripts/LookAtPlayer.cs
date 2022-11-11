@@ -6,17 +6,15 @@ using UnityEngine;
 public class LookAtPlayer : MonoBehaviour
 {
     public bool look = false;
-    void Start()
-    {
+    public GameObject player;
 
-    }
-
-    bool Update()
+    void Update()
     {
         if (look == true)
         {
-            Debug.Log("Looking");
+            Vector3 plocation = player.transform.position;
+            Debug.DrawLine(this.transform.position, plocation, Color.red);
+            transform.LookAt(player.transform);
         }
-        return look;
     }
 }

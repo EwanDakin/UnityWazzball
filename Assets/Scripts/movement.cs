@@ -5,40 +5,17 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     public Rigidbody rb;
-    //public Transform move;
     public float speed = 20;
-    void Start()
-    {
-
-    }
+    private Vector3 vmovement;
 
     void Update()
     {
-        if (Input.GetKey("w"))
+        vmovement.x = Input.GetAxisRaw("Horizontal");
+        vmovement.z = Input.GetAxisRaw("Vertical");
+        if(vmovement.x != 0 && vmovement.z != 0)
         {
-            //move.position += new Vector3(0, 0, 2);
-            rb.AddForce(new Vector3(0, 0, speed));
+            vmovement *= 0.7f;
         }
-        if (Input.GetKey("a"))
-        {
-            rb.AddForce(new Vector3(-1 * speed, 0, 0));
-        }
-        if (Input.GetKey("d"))
-        {
-            rb.AddForce(new Vector3(speed, 0, 0));
-        }
-        if (Input.GetKey("s"))
-        {
-            rb.AddForce(new Vector3(0, 0, -1 * speed));
-        }
-
-        if (Input.GetKeyDown("left shift"))
-        {
-            speed = (float)(speed * 2);
-        }
-        if (Input.GetKeyUp("left shift"))
-        {
-            speed = (float)(speed / 2);
-        }
+        rb.velocity = vmovement * speed;
     }
 }
