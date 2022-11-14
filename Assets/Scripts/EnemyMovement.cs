@@ -6,19 +6,34 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 
-    public static Vector3 Destination = new Vector3 ((float) 0.0, (float) 0.5, (float) -2.5);
-    public static Vector3 Start = new Vector3((float)0.0, (float)0.5, (float)-12.5);
-    public float enemyspeed = 2;
+    public GameObject target1;
+    public GameObject target2;
+    Vector3 currentargetpos;
+    Rigidbody rb;
+    public float rotationspeed = 5f;
+    public float enemyspeed = 5f;
     public bool look = false;
     public GameObject player;
 
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     void Update()
     {
-        if (Destination != Start)
+        Vector3 distance = (currentargetpos - transform.position).normalized * enemyspeed;
+        rb.velocity = distance;
+        if (Vector3.Distance(transform.position, target1.transform.position) <= 0.1)
         {
-            Vector3.MoveTowards(Start,Destination,enemyspeed);
+            currentargetpos = target2.transform.position;
         }
-        if (look == true)
+        else if (Vector3.Distance(transform.position, target2.transform.position) <= 0.1)
+        {
+            currentargetpos = target1.transform.position;
+        }
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(distance), Time.deltaTime * rotationspeed);
+            if (look == true)
         {
             Vector3 plocation = player.transform.position;
             Debug.DrawLine(this.transform.position, plocation, Color.red);

@@ -19,6 +19,6 @@ public class TrigScript : MonoBehaviour
         Debug.Log("Enter");
         enemy.GetComponent<EnemyMovement>().look = true;
         uipanel.SetActive(true);
-        player.GetComponent<movement>().speed = 0;
+        //player.GetComponent<movement>().speed = 0;
     }
 }
