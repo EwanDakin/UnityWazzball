@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 distance = (currentargetpos - transform.position).normalized * enemyspeed;
         rb.velocity = distance;
+        Debug.DrawLine(transform.position, currentargetpos, Color.blue);
         if (Vector3.Distance(transform.position, target1.transform.position) <= 0.1)
         {
             currentargetpos = target2.transform.position;
