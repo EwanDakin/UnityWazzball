@@ -4,6 +4,7 @@ public class TrigScript : MonoBehaviour
 {
     public GameObject uipanel;
     public GameObject player;
+    public GameObject enemy;
     void Start()
     {
         uipanel.SetActive(false);
@@ -13,12 +14,10 @@ public class TrigScript : MonoBehaviour
  
     }
 
-    public GameObject enemy;
     void OnTriggerEnter(Collider player)
     {
         Debug.Log("Enter");
         enemy.GetComponent<EnemyMovement>().look = true;
         uipanel.SetActive(true);
-        //player.GetComponent<movement>().speed = 0;
     }
 }
