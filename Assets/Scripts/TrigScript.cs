@@ -14,7 +14,7 @@ public class TrigScript : MonoBehaviour
     }
 
     public GameObject enemy;
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider player)
     {
         Debug.Log("Enter");
         enemy.GetComponent<EnemyMovement>().look = true;

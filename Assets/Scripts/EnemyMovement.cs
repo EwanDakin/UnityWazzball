@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        transform.position = target1.transform.position;
     }
 
     void Update()
@@ -37,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
             if (look == true)
         {
             Vector3 plocation = player.transform.position;
-            Debug.DrawLine(this.transform.position, plocation, Color.red);
+            Debug.DrawLine(transform.position, plocation, Color.red);
             transform.LookAt(player.transform);
         }
     }
