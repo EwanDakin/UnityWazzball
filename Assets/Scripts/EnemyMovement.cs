@@ -14,6 +14,8 @@ public class EnemyMovement : MonoBehaviour
     public float enemyspeed = 5f;
     public bool look = false;
     public GameObject player;
+    Vector3 Lastknownpos;
+    public float CooldownTimer = 3f;
 
     void Start()
     {
@@ -35,11 +37,24 @@ public class EnemyMovement : MonoBehaviour
             currentargetpos = target1.transform.position;
         }
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(distance), Time.deltaTime * rotationspeed);
-            if (look == true)
+        if (look == true)
         {
             Vector3 plocation = player.transform.position;
             Debug.DrawLine(transform.position, plocation, Color.red);
             transform.LookAt(player.transform);
+            currentargetpos = player.transform.position;
+            Lastknownpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+            enemyspeed = 7.5f;
+        }
+        if (Vector3.Distance(transform.position, Lastknownpos) <= 1)
+        {
+            CooldownTimer -= Time.deltaTime;
+            if (CooldownTimer <= 0)
+            {
+                currentargetpos = target1.transform.position;
+                enemyspeed = 10f;
+                CooldownTimer = 3f;
+            }
         }
     }
 }

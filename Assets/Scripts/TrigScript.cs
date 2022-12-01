@@ -9,10 +9,6 @@ public class TrigScript : MonoBehaviour
     {
         uipanel.SetActive(false);
     }
-    void Update()
-    {
- 
-    }
 
     void OnTriggerEnter(Collider player)
     {
