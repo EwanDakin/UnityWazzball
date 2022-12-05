@@ -10,6 +10,7 @@ public class EnemySight : MonoBehaviour
     public float sustime = 10f;
     bool inCollider = false;
     public GameObject susbar;
+    public bool looklock = false;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class EnemySight : MonoBehaviour
     }
     void Update()
     {   
-        if (inCollider)
+        if (inCollider && !looklock)
         {   
             sus = Mathf.Clamp(sus + Time.deltaTime, 0f, sustime);
             enemy.GetComponent<EnemyMovement>().look = true;

@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
 
     public GameObject target1;
     public GameObject target2;
-    Vector3 currentargetpos;
+    public Vector3 currentargetpos;
     Rigidbody rb;
     public float rotationspeed = 5f;
     public float enemyspeed = 5f;
